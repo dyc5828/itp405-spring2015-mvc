@@ -12,13 +12,23 @@
 		<h2>ITP 405 Spring 2015 MVC - Laravel</h2>
 		<h3>Dan Chen</h3>
 	</div>
-</div>
+</div><!-- div.jumbotron-->
 
-<div class="container">
+<div class="container-fluid">
+<div class="col-md-6 col-md-offset-3">
 
 <div class="list-group">
   <a class="list-group-item active">
-    A4 - DVD Search Page
+    A6 - DVD Review Page
+  </a>
+  <a href="/dvds/:8748" class="list-group-item">
+    DVD Review (Citizen Kane)
+  </a>
+</div>
+
+<div class="list-group">
+  <a class="list-group-item active">
+    A5 - DVD Search Page
   </a>
   <a href="/dvds/search" class="list-group-item">
   	DVD Search
@@ -29,5 +39,7 @@
 </div>
 
 </div>
+</div><!-- div.container-fluid-->
+
 </body>
 </html>

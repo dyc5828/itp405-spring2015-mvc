@@ -20,9 +20,14 @@
 // 	'password' => 'Auth\PasswordController',
 // ]);
 
+// ITP 405 Spring 2015
 Route::get('/', 'NavController@index');
 Route::get('/home', 'NavController@toIndex');
 
-// A4 - DVD Search Page
+// A6 - DVD Review Page
+Route::get('/dvds/:{id}', 'DvdController@review');
+Route::post('/dvds/:{id}', 'DvdController@review');
+
+// A5 - DVD Search Page
 Route::get('/dvds/search', 'DvdController@search');
 Route::get('/dvds', 'DvdController@results');

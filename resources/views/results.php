@@ -6,7 +6,8 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 </head>
 <body>
-<div class="container">
+<div class="container-fluid">
+<div class="col-md-8 col-md-offset-2">
 
 <ul class="nav nav-pills">
 	<li role="presentation"><a href="/">Home</a></li>
@@ -34,7 +35,6 @@
 	</p>
 <?php endif ?>
 
-</div>
 <table class="table table-striped">
 	<thead>
 		<tr>
@@ -45,41 +45,49 @@
 			<th>Sound</th>
 			<th>Format</th>
 			<th>Release Date</th>
+			<th>Review</th>
 		</tr>
 	</thead>
 	<tbody>
-<?php foreach($dvds as $dvd) : ?>
-	<?php
-		$date = new DateTime($dvd->release_date);
-	?>
-	<tr>
-		<td>
-			<?php echo $dvd->title?>
-		</td>
-		<td>
-			<?php echo $dvd->rating_name?>
-		</td>
-		<td>
-			<?php echo $dvd->genre_name?>
-		</td>
-		<td>
-			<?php echo $dvd->label_name?>
-		</td>
-		<td>
-			<?php echo $dvd->sound_name?>
-		</td>
-		<td>
-			<?php echo $dvd->format_name?>
-		</td>
-		<td>
-			<?php echo date_format($date, 'F jS Y g:ia')?>
-		</td>
-	</tr>
-<?php endforeach ?>
+	<?php foreach($dvds as $dvd) : ?>
+		<?php
+			$date = new DateTime($dvd->release_date);
+		?>
+		<tr>
+			<td>
+				<?php echo $dvd->title?>
+			</td>
+			<td>
+				<?php echo $dvd->rating?>
+			</td>
+			<td>
+				<?php echo $dvd->genre?>
+			</td>
+			<td>
+				<?php echo $dvd->label?>
+			</td>
+			<td>
+				<?php echo $dvd->sound?>
+			</td>
+			<td>
+				<?php echo $dvd->format?>
+			</td>
+			<td>
+				<?php echo date_format($date, 'F jS Y g:ia')?>
+			</td>
+			<td>
+				<a href="/dvds/:<?php echo $dvd->id?>">
+					Review
+				</a>
+			</td>
+		</tr>
+	<?php endforeach ?>
 
 	</tbody>
 </table>
 
 </div>
+</div><!--div.container-fluid-->
+
 </body>
 </html>
