@@ -4,6 +4,7 @@
 *NOTE: master on latest assignment*
 
 [A6](https://github.com/dyc5828/itp405-spring2015-mvc) - DVD Review Page (Laravel)
+
 [A5](https://github.com/dyc5828/itp405-spring2015-mvc/tree/A5) - DVD Search Page (Laravel)
 
 ## Laravel PHP Framework
