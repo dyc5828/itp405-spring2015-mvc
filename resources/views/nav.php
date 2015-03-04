@@ -19,6 +19,21 @@
 
 <div class="list-group">
   <a class="list-group-item active">
+    A7 - DVD Pages with Eloquent
+  </a>
+  <a href="/dvds/create" class="list-group-item">
+    DVD Insert
+  </a>
+  <a href="/dvds/search" class="list-group-item">
+    DVD Search (A7)
+  </a>
+  <a href="/genres/drama/dvds" class="list-group-item">
+    Genre DVDs (Drama)
+  </a>
+</div>
+
+<div class="list-group">
+  <a class="list-group-item active">
     A6 - DVD Review Page
   </a>
   <a href="/dvds/:8748" class="list-group-item">
@@ -31,7 +46,7 @@
     A5 - DVD Search Page
   </a>
   <a href="/dvds/search" class="list-group-item">
-  	DVD Search
+  	DVD Search (updated A7)
   </a>
   <a href="/dvds" class="list-group-item">
   	DVDs

@@ -1,49 +1,75 @@
 <?php namespace App\Http\Controllers;
 
 use \App\Models\Dvd;
+use \App\Models\Format;
+use \App\Models\Genre;
+use \App\Models\Label;
+use \App\Models\Rating;
+use \App\Models\Sound;
+
 use \Illuminate\Http\Request;
 
 class DvdController extends Controller {
 
-	public function search() {
+	// A7 - search() A5
+	public function create() {
+		$labels = Label::all();
+		$sounds = Sound::all();
+		$genres = Genre::all();
+		$ratings = Rating::all();
+		$formats = Format::all();
 
-		$genres = Dvd::selectTable('genres');
-		$ratings = Dvd::selectTable('ratings');
-
-		return view('search', [
+		return view('insert', [
+			'labels' => $labels,
+			'sounds' => $sounds,
 			'genres' => $genres,
-			'ratings' => $ratings
+			'ratings' => $ratings,
+			'formats' => $formats,
 		]);
 	}
 
-	public function results(Request $request) {
+	public function insert(Request $request) {
 
 		if ($request->input('submit')) {
+			//dd($request->all());
+			$dvd = new Dvd();
+			$dvd->label_id = $request->input('label');
+			$dvd->sound_id = $request->input('sound');
+			$dvd->genre_id = $request->input('genre');
+			$dvd->rating_id = $request->input('rating');
+			$dvd->format_id = $request->input('label');
 
-			$dvds = Dvd::searchDvd($request->all());
+			$saved = $dvd->save();
+			//dd($saved);
 
-			$terms = $request->all();
-
-			$genre = Dvd::getGenre($request->input('genre'));
-			$rating = Dvd::getRating($request->input('rating'));
-			
-			$terms['genre'] = $genre;
-			$terms['rating'] = $rating;
-		} else {
-
-			$dvds = Dvd::searchDvd();
-			$terms = 'Displaying All DVDs.';
+			if ($saved) {
+				return redirect('/dvds/create')->with('success','DVD have been successfully added!');
+			}
+			else {
+				return redirect('/dvds/create')->with('fail','There was a problem. The DVD was not added');
+			}
 		}
 
-		// echo '<pre>';
-		// var_dump($dvds);
+		return redirect('/dvds/create');
+	}
 
-		return view('results',[
-			'dvds' => $dvds,
-			'terms' => $terms
+	public function genreDvds($genre_name) {
+		//dd($genre_name);
+
+		$dvds = Dvd::with('genre','rating','label')
+		->whereHas('genre', function($query) use ($genre_name) {
+			$query->where('genre_name','=',$genre_name);
+		})
+		->get();
+		//dd($dvds);
+
+		return view('genreDvds', [
+			'genre' => $genre_name,
+			'dvds' => $dvds
 		]);
 	}
 
+	// A6
 	public function review($id, Request $request) {
 
 		// var_dump($id);
@@ -93,4 +119,43 @@ class DvdController extends Controller {
 		]);
 	}
 
+	// A5 - A7 updated
+	public function search() {
+
+		$genres = Genre::all();
+		$ratings = Rating::all();
+
+		return view('search', [
+			'genres' => $genres,
+			'ratings' => $ratings
+		]);
+	}
+
+	public function results(Request $request) {
+
+		if ($request->input('submit')) {
+
+			$dvds = Dvd::searchDvd($request->all());
+
+			$terms = $request->all();
+
+			$genre = Dvd::getGenre($request->input('genre'));
+			$rating = Dvd::getRating($request->input('rating'));
+			
+			$terms['genre'] = $genre;
+			$terms['rating'] = $rating;
+		} else {
+
+			$dvds = Dvd::searchDvd();
+			$terms = 'Displaying All DVDs.';
+		}
+
+		// echo '<pre>';
+		// var_dump($dvds);
+
+		return view('results',[
+			'dvds' => $dvds,
+			'terms' => $terms
+		]);
+	}
 }

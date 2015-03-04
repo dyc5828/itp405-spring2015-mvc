@@ -20,9 +20,31 @@
 // 	'password' => 'Auth\PasswordController',
 // ]);
 
+// Debug
+Event::listen('illuminate.query', function($sql) {
+	// echo '<code><pre>'.$sql.'</pre></code>';
+});
+
+// Menu Active
+HTML::macro('menuActive', function($route) {	
+	if( Request::is($route.'/*') || Request::is($route)) {
+		$active = 'class="active"';
+	}
+	else {
+		$active = '';
+	}
+  return $active;
+});
+
 // ITP 405 Spring 2015
 Route::get('/', 'NavController@index');
 Route::get('/home', 'NavController@toIndex');
+
+// A7 - DVD Pages with Eloquent
+Route::get('/dvds/create', 'DvdController@create');
+Route::post('/dvds', 'DvdController@insert');
+Route::get('/dvds/search', 'DvdController@search');
+Route::get('/genres/{genre_name}/dvds', 'DvdController@genreDvds');
 
 // A6 - DVD Review Page
 Route::get('/dvds/:{id}', 'DvdController@review');

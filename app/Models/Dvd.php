@@ -1,11 +1,27 @@
 <?php namespace App\Models;
 
+use Illuminate\Database\Eloquent\Model;
 use \DB;
 use \DateTime;
 use \Validator;
 
-class Dvd {
+class Dvd extends Model {
 
+	// A7
+	public function genre() {
+		
+		return $this->belongsTo('App\Models\Genre');
+	}
+	public function label() {
+		
+		return $this->belongsTo('App\Models\Label');
+	}
+	public function rating() {
+		
+		return $this->belongsTo('App\Models\Rating');
+	}
+
+	// A5-A5
 	public static function selectTable($table) {
 
 		return DB::table($table)->get();
