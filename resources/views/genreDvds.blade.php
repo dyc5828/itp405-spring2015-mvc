@@ -25,7 +25,9 @@
 	@foreach($dvds as $dvd)
 		<tr>
 			<td>
-				{{ $dvd->title }}
+				<a href="/dvds/:<?php echo $dvd->id?>">
+					{{ $dvd->title }}
+				</a>
 			</td>
 			<td>
 				{{ $dvd->rating->rating_name }}

@@ -40,6 +40,9 @@ HTML::macro('menuActive', function($route) {
 Route::get('/', 'NavController@index');
 Route::get('/home', 'NavController@toIndex');
 
+// A8 - APIs
+Route::get('/dvds/:{id}', 'DvdController@review');
+
 // A7 - DVD Pages with Eloquent
 Route::get('/dvds/create', 'DvdController@create');
 Route::post('/dvds', 'DvdController@insert');

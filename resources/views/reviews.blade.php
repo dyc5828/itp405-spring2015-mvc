@@ -55,7 +55,6 @@
 	</table>
 @stop
 
-
 @section('reviews')
 	@if (count($reviews))
 		@foreach($reviews as $review)

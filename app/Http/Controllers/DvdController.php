@@ -7,6 +7,8 @@ use \App\Models\Label;
 use \App\Models\Rating;
 use \App\Models\Sound;
 
+use \App\Services\RottenTomatoes as RT;
+
 use \Illuminate\Http\Request;
 
 class DvdController extends Controller {
@@ -69,12 +71,10 @@ class DvdController extends Controller {
 		]);
 	}
 
-	// A6
+	// A6 - A8 updated
 	public function review($id, Request $request) {
 
-		// var_dump($id);
-		// var_dump($request->all());
-
+		// valid
 		if (!Dvd::validId($id)) {
 			return redirect('/dvds/search');
 		}
@@ -102,6 +102,7 @@ class DvdController extends Controller {
 			}
 		}
 
+		// dvd info
 		$dvds = Dvd::getDvd($id);
 		// var_dump($dvds);
 
@@ -109,13 +110,20 @@ class DvdController extends Controller {
 		$dvd->date = Dvd::formatDate($dvd->release_date);
 		// var_dump($dvd);
 
+		// dvd reviews
 		$reviews = Dvd::getReviews($id);
 		// var_dump($reviews);
 
-		return view('reviews', [
+		// rt data
+		$rt = RT::search($dvd->title);
+		// echo '<pre>';
+		// var_dump($rt);
+
+		return view('details', [
 			'id' => $id,
 			'dvd' => $dvd,
-			'reviews' => $reviews
+			'reviews' => $reviews,
+			'rt' => $rt
 		]);
 	}
 

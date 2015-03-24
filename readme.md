@@ -3,7 +3,9 @@
 ## Assignments - Branch
 *NOTE: master on latest assignment*
 
-[A7](https://github.com/dyc5828/itp405-spring2015-mvc) - DVD Review Page (Laravel)
+[A8](https://github.com/dyc5828/itp405-spring2015-mvc) - APIs (Laravel)
+
+[A7](https://github.com/dyc5828/itp405-spring2015-mvc/tree/A7) - DVD Pages with Eloquent (Laravel)
 
 [A6](https://github.com/dyc5828/itp405-spring2015-mvc/tree/A6) - DVD Review Page (Laravel)
 

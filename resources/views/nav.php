@@ -21,6 +21,15 @@
   <a class="list-group-item active">
     A7 - DVD Pages with Eloquent
   </a>
+  <a href="/dvds/:8748" class="list-group-item">
+    DVD Details (Citizen Kane) (formerly Review)
+  </a>
+</div>
+
+<div class="list-group">
+  <a class="list-group-item active">
+    A7 - DVD Pages with Eloquent
+  </a>
   <a href="/dvds/create" class="list-group-item">
     DVD Insert
   </a>
@@ -37,7 +46,7 @@
     A6 - DVD Review Page
   </a>
   <a href="/dvds/:8748" class="list-group-item">
-    DVD Review (Citizen Kane)
+    DVD Review (Citizen Kane) (updated A8 to Details)
   </a>
 </div>
 

@@ -55,7 +55,9 @@
 		?>
 		<tr>
 			<td>
-				<?php echo $dvd->title?>
+				<a href="/dvds/:<?php echo $dvd->id?>">
+					<?php echo $dvd->title?>
+				</a>
 			</td>
 			<td>
 				<?php echo $dvd->rating?>
